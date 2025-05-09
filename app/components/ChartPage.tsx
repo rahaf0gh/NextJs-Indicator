@@ -1,5 +1,4 @@
 'use client';
-
 import React, { useEffect, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { getData } from '../view-data/dataFetcher';
@@ -42,17 +41,17 @@ export default function ChartPage() {
     fetchData();
   }, [url, format]);
 
+  if (!url || !format) return <p className="p-5 text-red-600">رابط غير صالح</p>;
+  if (data.length === 0) return <p className="p-5">جاري تحميل البيانات...</p>;
+
   const totalItems = data.length;
   const activityGates = new Set(data.map((item) => item[xKey])).size;
   const sections = extraKey ? new Set(data.map((item) => item[extraKey])).size : 0;
 
-  if (!url || !format) return <p className="p-5 text-red-600">رابط غير صالح</p>;
-  if (data.length === 0) return <p className="p-5">جاري تحميل البيانات...</p>;
-
   return (
-    <div className="p-8 space-y-8">
+    <div className="space-y-8">
       <h1 className="text-2xl font-bold text-center">📊 عرض البيانات في 3 رسوم</h1>
-      <p className='text-center text-red-800 text-md'> قد يختلف عرض الرسوم لاختلاف مواضع الأعمدة في المتصفح</p>
+      <p className='text-center text-red-800 text-md'>قد يختلف عرض الرسوم لاختلاف مواضع الأعمدة في المتصفح</p>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 text-center">
         <div className="bg-white p-4 rounded-xl shadow">
