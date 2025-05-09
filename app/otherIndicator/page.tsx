@@ -21,7 +21,10 @@ const filteredResources = todo.resources.filter(resource =>
 
   return(
     <div className='p-7'>
-      <h2 className='text-center text-2xl font-bold mb-4'>مصادر بيانات أخرى</h2>   
+      <h2 className='text-center text-2xl font-bold mb-4'>مصادر بيانات أخرى</h2>  
+      <p className='text-center text-red-800 text-md'>
+        قد يختلف تصميم الجدول عن الملف الأساسي لاختلاف مواضع الأعمدة في المتصفح
+      </p> 
         <div className="overflow-x-auto border rounded-lg shadow">
 
           <table className="min-w-full text-sm text-right border-collapse">

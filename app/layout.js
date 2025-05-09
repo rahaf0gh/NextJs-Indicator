@@ -56,7 +56,11 @@ export default function RootLayout({ children }) {
   
 </div>
 
-{/* <footer>صنع بواسطة رتَـق , م. رهف فهد - 2025</footer> */}
+      <footer>
+        <p className="text-center fixed bottom-0 w-full p-4 bg-base-100">
+         &copy; صنع بواسطة :رتَـق ، م. رهف فهد  - 2025  
+        </p>
+      </footer>
         {children}
       </body>
     </html>
