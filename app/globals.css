@@ -1,0 +1,63 @@
+@import "tailwindcss";
+@plugin "daisyui";
+:root {
+  --background: #fffff8;
+  --foreground: #407b94;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #f2f2f2;
+    --foreground: #ededed;
+  }
+}
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: "Cairo", sans-serif;
+}
+
+/* Nav bar Style  */
+.nav-bg-color{
+  background-color: #EFEFEF;
+}
+.nav-bg-color h2{
+  color: #5C9CB8;
+}
+.ulNav{
+  color: #5C9CB8;
+  @apply text-xl p-3;
+}
+.ulNav:hover{
+  background-color: #e0e0e0;
+  border-radius: 6px;
+  transition: 0.2s ease-out;
+}
+
+/* button style  */
+button{
+  @apply p-2 px-3 cursor-pointer;
+  border-radius: 20px;
+}
+.btn,
+.btn-outline:hover{
+  background-color: #F2B6C3;
+  color: #ffffff;
+  transition: 0.2s ease-out;
+}
+.btn:hover,
+.card:hover{
+  transition: 0.2s ease-in-out;
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+}
+.btn-outline{
+  border: 1px solid #F2B6C3;
+  color: #F2B6C3;
+}
