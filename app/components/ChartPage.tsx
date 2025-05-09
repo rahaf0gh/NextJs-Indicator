@@ -1,6 +1,7 @@
 'use client';
-import React, { useEffect, useState } from 'react';
+
 import { useSearchParams } from 'next/navigation';
+import { useEffect, useState } from 'react';
 import { getData } from '../view-data/dataFetcher';
 import {
   LineChart, Line,
@@ -44,75 +45,28 @@ export default function ChartPage() {
   if (!url || !format) return <p className="p-5 text-red-600">رابط غير صالح</p>;
   if (data.length === 0) return <p className="p-5">جاري تحميل البيانات...</p>;
 
-  const totalItems = data.length;
-  const activityGates = new Set(data.map((item) => item[xKey])).size;
-  const sections = extraKey ? new Set(data.map((item) => item[extraKey])).size : 0;
-
   return (
-    <div className="space-y-8">
-      <h1 className="text-2xl font-bold text-center">📊 عرض البيانات في 3 رسوم</h1>
-      <p className='text-center text-red-800 text-md'>قد يختلف عرض الرسوم لاختلاف مواضع الأعمدة في المتصفح</p>
-
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 text-center">
-        <div className="bg-white p-4 rounded-xl shadow">
-          <h3 className="text-gray-500">إجمالي المنشآت</h3>
-          <p className="text-xl font-bold">{totalItems}</p>
-        </div>
-        <div className="bg-white p-4 rounded-xl shadow">
-          <h3 className="text-gray-500">عدد أبواب النشاط</h3>
-          <p className="text-xl font-bold">{activityGates}</p>
-        </div>
-        <div className="bg-white p-4 rounded-xl shadow">
-          <h3 className="text-gray-500">عدد الأقسام</h3>
-          <p className="text-xl font-bold">{sections}</p>
-        </div>
-      </div>
-
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-        <div className="bg-white p-4 rounded-xl shadow">
-          <h2 className="text-lg font-semibold mb-2">الرسم الخطي</h2>
-          <ResponsiveContainer width="100%" height={300}>
-            <LineChart data={data}>
-              <CartesianGrid stroke="#ccc" />
-              <XAxis dataKey={xKey} />
-              <YAxis />
-              <Tooltip />
-              <Legend />
-              <Line type="monotone" dataKey={yKey} stroke="#8884d8" />
-            </LineChart>
-          </ResponsiveContainer>
-        </div>
-
-        <div className="bg-white p-4 rounded-xl shadow">
-          <h2 className="text-lg font-semibold mb-2">الرسم العمودي</h2>
-          <ResponsiveContainer width="100%" height={300}>
-            <BarChart data={data}>
-              <CartesianGrid strokeDasharray="3 3" />
-              <XAxis dataKey={xKey} />
-              <YAxis />
-              <Tooltip />
-              <Legend />
-              <Bar dataKey={yKey} fill="#82ca9d" />
-            </BarChart>
-          </ResponsiveContainer>
-        </div>
-      </div>
-
-      {extraKey && (
-        <div className="bg-white p-4 rounded-xl shadow">
-          <h2 className="text-lg font-semibold mb-2">رسم خطي لمفتاح إضافي: {extraKey}</h2>
-          <ResponsiveContainer width="100%" height={300}>
-            <LineChart data={data}>
-              <CartesianGrid stroke="#ccc" />
-              <XAxis dataKey={xKey} />
-              <YAxis />
-              <Tooltip />
-              <Legend />
-              <Line type="monotone" dataKey={extraKey} stroke="#ff7300" />
-            </LineChart>
-          </ResponsiveContainer>
-        </div>
+    <ResponsiveContainer width="100%" height={400}>
+      {extraKey ? (
+        <BarChart data={data}>
+          <CartesianGrid strokeDasharray="3 3" />
+          <XAxis dataKey={xKey} />
+          <YAxis />
+          <Tooltip />
+          <Legend />
+          <Bar dataKey={yKey} fill="#8884d8" />
+          <Bar dataKey={extraKey} fill="#82ca9d" />
+        </BarChart>
+      ) : (
+        <LineChart data={data}>
+          <CartesianGrid strokeDasharray="3 3" />
+          <XAxis dataKey={xKey} />
+          <YAxis />
+          <Tooltip />
+          <Legend />
+          <Line type="monotone" dataKey={yKey} stroke="#8884d8" />
+        </LineChart>
       )}
-    </div>
+    </ResponsiveContainer>
   );
 }
