@@ -55,6 +55,8 @@ export default function RootLayout({ children }) {
   </div>
   
 </div>
+
+<footer>صنع بواسطة رتَـق , م. رهف فهد - 2025</footer>
         {children}
       </body>
     </html>
