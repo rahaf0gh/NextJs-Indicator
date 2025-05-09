@@ -1,7 +1,7 @@
 'use client';
 
 import { Suspense } from 'react';
-import ChartPage from '../components/ChartPage';
+import  ChartPage from '../components/ChartPage';
 
 const Page = () => {
   return (

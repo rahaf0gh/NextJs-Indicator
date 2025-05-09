@@ -9,7 +9,7 @@ import {
   XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer
 } from 'recharts';
 
-export default function ChartPage() {
+const ChartPage = () => {
   const searchParams = useSearchParams();
   const url = searchParams.get('url');
   const format = searchParams.get('format');
@@ -117,3 +117,4 @@ export default function ChartPage() {
     </div>
   );
 }
+export default ChartPage;
